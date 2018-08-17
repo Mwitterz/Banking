@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Banking.Models
 {
-    public class BankAccount
+    public class BankAccount : IBankAccount
     {
         #region fields
         private string _accountNumber;

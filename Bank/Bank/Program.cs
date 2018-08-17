@@ -6,7 +6,7 @@ namespace Banking
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             BankAccount myAccount = new BankAccount("123-123123-12");
             Console.WriteLine($"Account number: {myAccount.AccountNumber}");
