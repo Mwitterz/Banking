@@ -36,13 +36,13 @@ namespace Banking.Models
         #endregion
 
         #region Methods
-        public void Deposit(decimal amount)
+        public  void Deposit(decimal amount)
         {
             Balance += amount;
             _transactions.Add(new Transaction(amount, TransactionType.Deposit));
         }
 
-        public void Withdraw(decimal amount)
+        public virtual void Withdraw(decimal amount)
         {
             Balance -= amount;
             _transactions.Add(new Transaction(amount, TransactionType.Withdraw));

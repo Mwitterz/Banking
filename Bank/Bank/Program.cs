@@ -20,6 +20,12 @@ namespace Banking
             int aantal = myAccount.GetTransactions(DateTime.Today.AddDays(-2), DateTime.Today).Count();
             Console.WriteLine($"Aantal transacies: {aantal}");
 
+            SavingsAccount saving = new SavingsAccount("123-123123-12",0.01M);
+            saving.Deposit(200M);
+            saving.Withdraw(100M);
+            saving.AddInterest();
+            Console.WriteLine($"Balance savingsaccount: {saving.Balance}");
+
             Console.Read();
         }
     }
