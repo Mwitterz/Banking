@@ -63,5 +63,22 @@ namespace Banking.Models
             return transList;
         }
         #endregion
+
+        public override string ToString()
+        {
+            return $"{AccountNumber} - {Balance}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            BankAccount account = obj as BankAccount;
+            if (account == null) return false;
+            return AccountNumber == account.AccountNumber;
+        }
+
+        public override int GetHashCode()
+        {
+            return AccountNumber?.GetHashCode() ?? 0;
+        }
     }
 }

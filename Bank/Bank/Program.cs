@@ -25,6 +25,7 @@ namespace Banking
             saving.Withdraw(100M);
             saving.AddInterest();
             Console.WriteLine($"Balance savingsaccount: {saving.Balance}");
+            Console.Write(saving);
 
             Console.Read();
         }
