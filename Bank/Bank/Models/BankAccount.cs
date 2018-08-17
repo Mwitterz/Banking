@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Banking.Models
 {
@@ -6,7 +7,8 @@ namespace Banking.Models
     {
         #region fields
         private string _accountNumber;
-        // test commit
+        private IList<Transaction> _transactions;
+        
         #endregion
 
         #region Constructors
@@ -14,8 +16,10 @@ namespace Banking.Models
         {
             AccountNumber = accountNumber;
             Balance = Decimal.Zero;
+            _transactions = new List<Transaction>();
         }
         #endregion
+        //hier iets aanpassen
 
 
         #region Properties
@@ -24,17 +28,39 @@ namespace Banking.Models
         public decimal Balance { get; set; }
         public string AccountNumber { get => _accountNumber; set => _accountNumber = value; }
 
+        public int NumberOfTransactions
+        {
+            get { return _transactions.Count;}
+
+        }
         #endregion
 
         #region Methods
         public void Deposit(decimal amount)
         {
             Balance += amount;
+            _transactions.Add(new Transaction(amount, TransactionType.Deposit));
         }
 
         public void Withdraw(decimal amount)
         {
             Balance -= amount;
+            _transactions.Add(new Transaction(amount, TransactionType.Withdraw));
+        }
+    
+
+        public IEnumerable<Transaction> GetTransactions(DateTime? from, DateTime? till)
+        {
+            IList<Transaction> transList = new List<Transaction>();
+            foreach (Transaction transaction in _transactions)
+            {
+                if(transaction.DateOfTrans>= from && transaction.DateOfTrans <= till)
+                {
+                    transList.Add(transaction);
+                }
+            }
+
+            return transList;
         }
         #endregion
     }

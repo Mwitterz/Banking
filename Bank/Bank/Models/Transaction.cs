@@ -4,31 +4,43 @@ namespace Banking.Models
 {
     public class Transaction
     {
-        private decimal _amount;
+        
+        
+        #region Properties
 
-
-        public decimal Amount { get => _amount; private set => _amount = value; }
+        public decimal Amount { get ; private set ; }
         public DateTime DateOfTrans { get; private set; }
-        public bool IsDeposit {
+        public TransactionType TransactionType { get; private set; }
+
+        #endregion 
+
+
+        #region Methods
+        public bool IsDeposit
+        {
             get
             {
                 return TransactionType == TransactionType.Deposit;
             }
-        } 
+        }
         public bool IsWithdraw
         {
             get
             {
                 return TransactionType == TransactionType.Withdraw;
             }
-        } 
-        public TransactionType TransactionType { get; set; }
+        }
+        #endregion
 
+
+
+        #region Constructors
         public Transaction(decimal amount, TransactionType type)
         {
             Amount = amount;
-            DateOfTrans = new DateTime();
+            DateOfTrans = DateTime.Today;
             TransactionType = type;
         }
+        #endregion
     }
 }
