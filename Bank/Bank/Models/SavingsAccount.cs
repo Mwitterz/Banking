@@ -1,6 +1,6 @@
 ﻿namespace Banking.Models
 {
-    class SavingsAccount :BankAccount
+    public class SavingsAccount :BankAccount
     {
         protected const decimal WithdrawCost = 0.25M;
 

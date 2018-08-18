@@ -26,7 +26,19 @@ namespace Banking.Models
         
 
         public decimal Balance { get; set; }
-        public string AccountNumber { get => _accountNumber; set => _accountNumber = value; }
+        public string AccountNumber
+        {
+            get { return _accountNumber;}
+            set
+            {
+                if (value == String.Empty)
+                {
+                    throw new ArgumentException("Accountnumber must have a value");
+                }
+
+                _accountNumber = value;
+            }
+             }
 
         public int NumberOfTransactions
         {
