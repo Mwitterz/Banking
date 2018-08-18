@@ -65,6 +65,15 @@ namespace BankTests.Models
             _bankAccount.Withdraw(100);
             Assert.Equal(-100, _bankAccount.Balance);
         }
+
+        [Theory]
+        [InlineData("123-4567890-0333")] //Too long
+        [InlineData("123-1547563@60")] //Wrong Format
+        [InlineData("123-4567890-03")] //not divbisable by 97
+        public void NewAccount_WrongAccountNumber_Fails(string accountNumber)
+        {
+            Assert.Throws<ArgumentException>(() => new BankAccount(accountNumber));
+        }
         
     }
 }

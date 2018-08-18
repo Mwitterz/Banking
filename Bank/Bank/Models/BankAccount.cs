@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Banking.Models
 {
@@ -31,11 +32,13 @@ namespace Banking.Models
             get { return _accountNumber;}
             set
             {
-                if (value == String.Empty)
-                {
-                    throw new ArgumentException("Accountnumber must have a value");
-                }
-
+                Regex regex = new Regex(@"(\d{3})-(\d{7})-(\d{2})");
+                Match match = regex.Match(value);
+                if(!match.Success)
+                    throw new ArgumentException("Bankaccount numer format is nog correct");
+                if (int.Parse(match.Groups[1] + match.Groups[2].ToString()) % 97 !=
+                    int.Parse(match.Groups[3].ToString()))
+                    throw new ArgumentException("97 test of the bankaccount number failed");
                 _accountNumber = value;
             }
              }

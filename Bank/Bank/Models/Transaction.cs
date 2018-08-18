@@ -37,6 +37,11 @@ namespace Banking.Models
         #region Constructors
         public Transaction(decimal amount, TransactionType type)
         {
+            //if (((type == TransactionType.Deposit) && (amount < 0)))||((type == TransactionType.Withdraw)&&(amount))
+            if (amount <0)
+            {
+                throw new ArgumentException("Amount can not be negative");
+            }
             Amount = amount;
             DateOfTrans = DateTime.Today;
             TransactionType = type;
